@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MVC_StokTakipModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Birimler">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Birim" Type="varchar(max)" Nullable="false" />
+    <Property Name="Aciklama" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Kategoriler">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Kategori" Type="varchar(max)" Nullable="false" />
+    <Property Name="Aciklama" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Markalar">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KategoriID" Type="int" Nullable="false" />
+    <Property Name="Marka" Type="varchar(max)" Nullable="false" />
+    <Property Name="Aciklama" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Müsteriler">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AdiSoyadi" Type="varchar(max)" Nullable="false" />
+    <Property Name="Telefon" Type="varchar(max)" Nullable="false" />
+    <Property Name="Adres" Type="varchar(max)" Nullable="false" />
+    <Property Name="Email" Type="varchar(max)" Nullable="false" />
+    <Property Name="Resim" Type="varchar(max)" Nullable="false" />
+    <Property Name="KayitTarihi" Type="date" Nullable="false" />
+    <Property Name="Puani" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Satislar">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UrunID" Type="int" Nullable="false" />
+    <Property Name="SepetID" Type="int" Nullable="false" />
+    <Property Name="BarkodNo" Type="varchar(max)" Nullable="false" />
+    <Property Name="BirimFiyati" Type="decimal" Precision="28" Scale="2" Nullable="false" />
+    <Property Name="Miktari" Type="decimal" Precision="28" Scale="2" Nullable="false" />
+    <Property Name="ToplamFiyati" Type="decimal" Precision="28" Scale="2" Nullable="false" />
+    <Property Name="KDV" Type="int" Nullable="false" />
+    <Property Name="BirimID" Type="int" Nullable="false" />
+    <Property Name="Tarih" Type="date" Nullable="false" />
+    <Property Name="Saat" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'MVC_StokTakip.dbo.Sepet' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Sepet">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="UrunID" />
+      <PropertyRef Name="KategoriID" />
+      <PropertyRef Name="MarkaID" />
+      <PropertyRef Name="UrunAdi" />
+      <PropertyRef Name="BarkodNo" />
+      <PropertyRef Name="AlisFiyati" />
+      <PropertyRef Name="Miktari" />
+      <PropertyRef Name="ToplamFiyati" />
+      <PropertyRef Name="KDV" />
+      <PropertyRef Name="BirimID" />
+      <PropertyRef Name="Tarih" />
+      <PropertyRef Name="Saat" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="UrunID" Type="int" Nullable="false" />
+    <Property Name="KategoriID" Type="int" Nullable="false" />
+    <Property Name="MarkaID" Type="int" Nullable="false" />
+    <Property Name="UrunAdi" Type="varchar(max)" Nullable="false" />
+    <Property Name="BarkodNo" Type="varchar(max)" Nullable="false" />
+    <Property Name="AlisFiyati" Type="decimal" Precision="28" Scale="2" Nullable="false" />
+    <Property Name="Miktari" Type="decimal" Precision="28" Scale="2" Nullable="false" />
+    <Property Name="ToplamFiyati" Type="decimal" Precision="28" Scale="2" Nullable="false" />
+    <Property Name="KDV" Type="int" Nullable="false" />
+    <Property Name="BirimID" Type="int" Nullable="false" />
+    <Property Name="Tarih" Type="date" Nullable="false" />
+    <Property Name="Saat" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Urunler">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KategoriID" Type="int" Nullable="false" />
+    <Property Name="MarkaID" Type="int" Nullable="false" />
+    <Property Name="UrunAdi" Type="varchar(max)" Nullable="false" />
+    <Property Name="BarkodNo" Type="varchar(max)" Nullable="false" />
+    <Property Name="AlisFiyati" Type="decimal" Precision="28" Scale="2" Nullable="false" />
+    <Property Name="SatisFiyati" Type="decimal" Precision="28" Scale="2" Nullable="false" />
+    <Property Name="KDV" Type="int" Nullable="false" />
+    <Property Name="BirimID" Type="int" Nullable="false" />
+    <Property Name="Tarih" Type="datetime" Nullable="false" />
+    <Property Name="Aciklama" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Markalar_Kategoriler">
+    <End Role="Kategoriler" Type="Self.Kategoriler" Multiplicity="1" />
+    <End Role="Markalar" Type="Self.Markalar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategoriler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Markalar">
+        <PropertyRef Name="KategoriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Satislar_Urunler">
+    <End Role="Urunler" Type="Self.Urunler" Multiplicity="1" />
+    <End Role="Satislar" Type="Self.Satislar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urunler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Satislar">
+        <PropertyRef Name="UrunID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sepet_Urunler">
+    <End Role="Urunler" Type="Self.Urunler" Multiplicity="1" />
+    <End Role="Sepet" Type="Self.Sepet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urunler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Sepet">
+        <PropertyRef Name="UrunID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Urunler_Birimler">
+    <End Role="Birimler" Type="Self.Birimler" Multiplicity="1" />
+    <End Role="Urunler" Type="Self.Urunler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Birimler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Urunler">
+        <PropertyRef Name="BirimID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Urunler_Kategoriler">
+    <End Role="Kategoriler" Type="Self.Kategoriler" Multiplicity="1" />
+    <End Role="Urunler" Type="Self.Urunler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategoriler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Urunler">
+        <PropertyRef Name="KategoriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Urunler_Markalar">
+    <End Role="Markalar" Type="Self.Markalar" Multiplicity="1" />
+    <End Role="Urunler" Type="Self.Urunler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Markalar">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Urunler">
+        <PropertyRef Name="MarkaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MVC_StokTakipModelStoreContainer">
+    <EntitySet Name="Birimler" EntityType="Self.Birimler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kategoriler" EntityType="Self.Kategoriler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Markalar" EntityType="Self.Markalar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Müsteriler" EntityType="Self.Müsteriler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Satislar" EntityType="Self.Satislar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Urunler" EntityType="Self.Urunler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sepet" EntityType="Self.Sepet" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Sepet].[ID] AS [ID], 
+    [Sepet].[UrunID] AS [UrunID], 
+    [Sepet].[KategoriID] AS [KategoriID], 
+    [Sepet].[MarkaID] AS [MarkaID], 
+    [Sepet].[UrunAdi] AS [UrunAdi], 
+    [Sepet].[BarkodNo] AS [BarkodNo], 
+    [Sepet].[AlisFiyati] AS [AlisFiyati], 
+    [Sepet].[Miktari] AS [Miktari], 
+    [Sepet].[ToplamFiyati] AS [ToplamFiyati], 
+    [Sepet].[KDV] AS [KDV], 
+    [Sepet].[BirimID] AS [BirimID], 
+    [Sepet].[Tarih] AS [Tarih], 
+    [Sepet].[Saat] AS [Saat]
+    FROM [dbo].[Sepet] AS [Sepet]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Markalar_Kategoriler" Association="Self.FK_Markalar_Kategoriler">
+      <End Role="Kategoriler" EntitySet="Kategoriler" />
+      <End Role="Markalar" EntitySet="Markalar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Satislar_Urunler" Association="Self.FK_Satislar_Urunler">
+      <End Role="Urunler" EntitySet="Urunler" />
+      <End Role="Satislar" EntitySet="Satislar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sepet_Urunler" Association="Self.FK_Sepet_Urunler">
+      <End Role="Urunler" EntitySet="Urunler" />
+      <End Role="Sepet" EntitySet="Sepet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Urunler_Birimler" Association="Self.FK_Urunler_Birimler">
+      <End Role="Birimler" EntitySet="Birimler" />
+      <End Role="Urunler" EntitySet="Urunler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Urunler_Kategoriler" Association="Self.FK_Urunler_Kategoriler">
+      <End Role="Kategoriler" EntitySet="Kategoriler" />
+      <End Role="Urunler" EntitySet="Urunler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Urunler_Markalar" Association="Self.FK_Urunler_Markalar">
+      <End Role="Markalar" EntitySet="Markalar" />
+      <End Role="Urunler" EntitySet="Urunler" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
