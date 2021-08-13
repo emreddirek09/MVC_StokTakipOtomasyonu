@@ -1,10 +1,7 @@
 /*!
-* Start Bootstrap - Business Casual v7.0.3 (https://startbootstrap.com/theme/business-casual)
+* Start Bootstrap - Bare v5.0.3 (https://startbootstrap.com/template/bare)
 * Copyright 2013-2021 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-business-casual/blob/master/LICENSE)
+* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-bare/blob/master/LICENSE)
 */
-// Highlights current date on contact page
-window.addEventListener('DOMContentLoaded', event => {
-    const listHoursArray = document.body.querySelectorAll('.list-hours li');
-    listHoursArray[new Date().getDay()].classList.add(('today'));
-})
+// This file is intentionally blank
+// Use this file to add JavaScript to your project
