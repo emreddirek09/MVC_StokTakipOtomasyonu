@@ -1,0 +1,29 @@
+﻿@model MVC_StokTakipOtomasyonu.Models.Entity.Kategoriler
+@{
+    ViewBag.Title = "GuncelleBilgiGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>GuncelleBilgiGetir</h2>
+
+<div class="container">
+
+    <form action="/Kategoriler/Guncelle">
+        @*<div class="form-group">
+            <b>ID</b> 
+            @Html.TextBoxFor(x => x.ID, new { @class = "form-control" })
+        </div>*@
+        @Html.HiddenFor(x => x.ID) @*// view içerisinde olacak ancak görülmeyecek arayüzde*@
+        <div class="form-group">
+            <b>Kategoriler</b> 
+            @Html.TextBoxFor(x => x.Kategori, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <b>Açıklama</b> 
+            @Html.TextBoxFor(x => x.Aciklama, new { @class = "form-control" })
+        </div>
+        <div>
+            <button class="btn btn-primary" >Kategori Güncelle</button>
+        </div>
+    </form>
+</div>

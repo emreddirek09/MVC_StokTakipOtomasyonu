@@ -4,13 +4,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Birim Ekle</h2>
+<h2>Birim Kaydet</h2>
 
 <div class="container">
 
-    @using (Html.BeginForm("Ekle", "Birimler", FormMethod.Post))
+    @using (Html.BeginForm("Kaydet", "Birimler", FormMethod.Post))
     {
         <div class="form-group">
+            @Html.HiddenFor(x => x.ID)
             @Html.LabelFor(x => x.Birim)
             @Html.TextBoxFor(x => x.Birim, new { @class = "form-control" })
         </div>
@@ -19,7 +20,7 @@
             @Html.TextAreaFor(x => x.Aciklama, new { @class = "form-control" })
         </div>
         <div class="form-group">
-            <button class="btn btn-success">Birim Ekle</button>
+            <button class="btn btn-success">Kaydet</button>
         </div>
     }
 

@@ -1,0 +1,31 @@
+﻿@model MVC_StokTakipOtomasyonu.Models.Entity.Kategoriler
+@{
+    ViewBag.Title = "SilBilgiGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*model tanımlaması yapıyoruz yukarıda*@
+
+
+<h2>Kategori Silme</h2>
+
+<div class="container">
+    @using (Html.BeginForm("Sil", "Kategoriler"))
+    {
+      <h4> Kayıt Silinsin mi? </h4>
+      <div class="form-group">
+          @Html.HiddenFor(x => x.ID)
+          <b>@Html.LabelFor(x => x.Kategori):</b>
+          @Html.DisplayFor(x => x.Kategori, new { @class = "form-control" })
+      </div>
+      <div class="form-group">
+          <b>@Html.LabelFor(x => x.Aciklama):</b>
+          @Html.DisplayFor(x => x.Aciklama, new { @class = "form-control" })
+      </div>
+        <div>
+            <button class="btn btn-danger">Kategori Sil</button>
+            <a href="/Kategoriler/Index/">Ana Sayfa</a>
+        </div>
+    }
+</div>
+
