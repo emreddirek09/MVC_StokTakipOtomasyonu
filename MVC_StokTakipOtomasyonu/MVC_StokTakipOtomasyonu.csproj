@@ -131,6 +131,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BirimlerController.cs" />
     <Compile Include="Controllers\KategorilerController.cs" />
+    <Compile Include="Controllers\MarkalarController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -174,6 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\favicon.ico" />
+    <Content Include="css\styledanger.css" />
     <Content Include="css\styles.css" />
     <Content Include="img\favicon.ico" />
     <Content Include="img\about.jpg" />
@@ -239,6 +241,9 @@
     <Content Include="Views\Kategoriler\GuncelleBilgiGetir.cshtml" />
     <Content Include="Views\Kategoriler\SilBilgiGetir.cshtml" />
     <Content Include="Views\Birimler\SilBilgiGetir.cshtml" />
+    <Content Include="Views\Markalar\Index.cshtml" />
+    <Content Include="Views\Markalar\Ekle.cshtml" />
+    <Content Include="Views\Markalar\GuncelleBilgiGetir.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

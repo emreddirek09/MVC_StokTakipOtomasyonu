@@ -22,13 +22,17 @@ namespace MVC_StokTakipOtomasyonu.Controllers
         }
         public ActionResult Ekle2(Kategoriler p) //Yeni Kategori Ekleme Komutu *Ekle.cshtml sayfası form action dan yönlendirme alıyor.
         {
+            if (!ModelState.IsValid) // doğrulama oluşmazsa aynı sayfa kalacak hataları gösterecek
+            {
+                return View("Ekle");
+            }
             db.Kategoriler.Add(p); // Ekleme yapacağında ID 0 olarak kabul eder.
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        public ActionResult GuncelleBilgiGetir(Kategoriler p)
+        public ActionResult GuncelleBilgiGetir(int ID)
         {
-           var model = db.Kategoriler.Find(p.ID); //ID ye göre veri çekme
+           var model = db.Kategoriler.Find(ID); //ID ye göre veri çekme
             
             if (model == null)
             {
@@ -38,6 +42,10 @@ namespace MVC_StokTakipOtomasyonu.Controllers
         }
         public ActionResult Guncelle(Kategoriler p)
         {
+            if (!ModelState.IsValid) // Hataların görünür olması için bunu eklemek şart
+            {
+                return View("GuncelleBilgiGetir");
+            }
             db.Entry(p).State = System.Data.Entity.EntityState.Modified; //Güncelleme işlemini yapan komut
             db.SaveChanges();
             return RedirectToAction("Index");

@@ -1,0 +1,47 @@
+﻿@model MVC_StokTakipOtomasyonu.Models.Entity.Markalar
+@{
+    ViewBag.Title = "Ekle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Marka Ekleme Sayfası</h2>
+
+<div class="container">
+    @using (Html.BeginForm("Ekle", "Markalar", FormMethod.Post)) //parametrele; actionresuolt ismi, controller ismi, methot ismi
+    {
+        <div class="form-group">
+            @Html.LabelFor(x => x.Kategoriler.Kategori)
+            @*@Html.DropDownList("KategoriID", null, "---Seçiniz---", new { @class = "form-control" })*@
+            @*@Html.DropDownList("KategoriID", (List<SelectListItem>)ViewBag.l, "---Seçiniz---", new { @class = "form-control" })*@
+            @* Farklı bir dropdowblist çekme yöntemi olarak da KategoriID for ile *@
+            @Html.DropDownListFor(x => x.KategoriID, (List<SelectListItem>)ViewBag.l, "---Seçiniz---", new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.KategoriID, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.Marka)
+            @Html.TextBoxFor(x => x.Marka, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Marka, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.Aciklama)
+            @Html.TextBoxFor(x => x.Aciklama, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Aciklama, "", new { @class = "text-danger" })
+        </div>
+        <div>
+            <button class="btn btn-success">Marka Ekle</button>
+        </div>
+    }
+</div>
+
+@section scriptdanger{
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}
+
+
+
+
+
