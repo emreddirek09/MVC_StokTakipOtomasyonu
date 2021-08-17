@@ -15,7 +15,6 @@ namespace MVC_StokTakipOtomasyonu.Controllers
             var model = db.Urunler.ToList();
             return View(model);
         }
-
         [HttpGet]
         public ActionResult Ekle()
         {
@@ -23,7 +22,6 @@ namespace MVC_StokTakipOtomasyonu.Controllers
             NewMethod(model);
             return View(model);
         }
-
         private void NewMethod(Urunler model)
         {
             List<Kategoriler> kategorilers = db.Kategoriler.OrderBy(x => x.Kategori).ToList();
@@ -42,7 +40,6 @@ namespace MVC_StokTakipOtomasyonu.Controllers
                                   }).ToList();
             
         }
-
         [HttpPost]
         public ActionResult Ekle(Urunler u)
         {
@@ -56,7 +53,20 @@ namespace MVC_StokTakipOtomasyonu.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        [HttpGet]
+        public ActionResult MiktarEkle(int id)
+        {
+            var model = db.Urunler.Find(id);
+            return View();
+        }
+        [HttpPost]
+        public ActionResult MiktarEkle(Urunler p)
+        {
+            var model = db.Urunler.Find(p.ID);
+            model.Miktari = model.Miktari + p.Miktari;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
         [HttpPost]
         public JsonResult GetMarka(int id2)
         {
@@ -75,6 +85,45 @@ namespace MVC_StokTakipOtomasyonu.Controllers
             model.MarkaListesi.Insert(0, new SelectListItem { Text= "Seçiniz", Value = "" });
             return Json(model.MarkaListesi, JsonRequestBehavior.AllowGet); // json türünde veri döndürcek
         }
-
+        public ActionResult GuncelleBilgiGetir(int id)
+        {
+            var model = db.Urunler.Find(id);
+            NewMethod(model);
+            List<Markalar> markalist = db.Markalar.Where(x => x.KategoriID == model.KategoriID).OrderBy(x => x.Marka).ToList();
+            model.MarkaListesi = (from x in markalist
+                                  select new SelectListItem
+                                  {
+                                      Text = x.Marka,
+                                      Value = x.ID.ToString()
+                                  }).ToList();
+            return View(model);
+        }
+        public ActionResult Guncelle(Urunler p)
+        {
+            if (!ModelState.IsValid)
+            {
+                var model = db.Urunler.Find(p.ID);
+                NewMethod(model);
+                List<Markalar> markalist = db.Markalar.Where(x => x.KategoriID == model.KategoriID).OrderBy(x => x.Marka).ToList();
+                model.MarkaListesi = (from x in markalist
+                                      select new SelectListItem
+                                      {
+                                          Text = x.Marka,
+                                          Value = x.ID.ToString()
+                                      }).ToList();
+                return View(model);
+            }
+            db.Entry(p).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public ActionResult Sil(int id)
+        {
+            var model = db.Urunler.FirstOrDefault(x => x.ID == id);
+            db.Entry(model).State = System.Data.Entity.EntityState.Deleted;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

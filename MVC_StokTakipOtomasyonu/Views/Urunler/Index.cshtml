@@ -6,7 +6,7 @@
 
 <h2>Ürün Listeleme Sayfası</h2>
 
-<table class="table">
+<table class="table" id="urun">
 
     <thead style="background-color:aliceblue">
         <tr>
@@ -22,7 +22,9 @@
             <th>K.D.V</th>
             <th>Tarih</th>
             <th>Açıklama</th>
-            <th></th><th></th>
+            <th></th>
+            <th></th>
+            <th></th>
         </tr>
 
     </thead>
@@ -37,17 +39,46 @@
             <td>@Html.DisplayFor(x => item.BarkodNo)</td>
             <td>@Html.DisplayFor(x => item.AlisFiyati)</td>
             <td>@Html.DisplayFor(x => item.SatisFiyati)</td>
-            <td>@Html.DisplayFor(x=>item.Miktari)</td>
+            <td>@Html.DisplayFor(x => item.Miktari)</td>
             <td>@Html.DisplayFor(x => item.Birimler.Birim)</td>
             <td>%@Html.DisplayFor(x => item.KDV)</td>
             <td>@Html.DisplayFor(x => item.Tarih)</td>
             <td>@Html.DisplayFor(x => item.Aciklama)</td>
-            <td>@Html.ActionLink("Sil", "SilBilgiGetir", new { id = item.ID }, new { @class = "btn btn-danger" })</td>
+            @* Ajax ile silme yapacağımız için burayı yorum satırı yaptık
+            <td>@Html.ActionLink("Sil", "SilBilgiGetir", new { id = item.ID }, new { @class = "btn btn-danger" })</td>*@
+            
+            <td><input type="submit" name="btn" value="Sil" class="btn btn-danger btnSil" data-id="@item.ID" /></td>
             <td>@Html.ActionLink("Güncelle", "GuncelleBilgiGetir", new { id = item.ID }, new { @class = "btn btn-primary" })</td>
+            <td>@Html.ActionLink("MiktarEkle", "MiktarEkle", new { id = item.ID }, new { @class = "btn btn-secondary" })</td>
+            @*Birinci Miktar Ekle text ismi ikinci miktar ekle ise ActionResult un ismi*@
         </tr>
         }
     </tbody>
 </table>
 <a href="/Urunler/Ekle/" class="btn btn-secondary">Ürün Ekle</a>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#urun").on("click", ".btnSil", function () {
+            var btn = $(this);
+            //var id = btn.data("id"); Burası id yi alert olarak yansıtıyor
+            //alert(id);
+            bootbox.confirm(btn.data("id") + "nolu ID silinsin mi?", function (result) {
+                if (result)
+                {
+                    var id = btn.data("id");
+                    $.ajax({
+                        type: "GET",
+                        url: "/Urunler/Sil/",
+                        data: { id:id },
+                        success: function () {
+                            btn.parent().parent().remove();
+                        }
+                    });
+                }
+            });
+        });
+    });
+</script>
 
 
