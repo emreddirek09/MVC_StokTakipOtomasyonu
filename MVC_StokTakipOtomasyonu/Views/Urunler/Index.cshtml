@@ -1,0 +1,53 @@
+﻿@model List<MVC_StokTakipOtomasyonu.Models.Entity.Urunler>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Ürün Listeleme Sayfası</h2>
+
+<table class="table">
+
+    <thead style="background-color:aliceblue">
+        <tr>
+            <th>ID</th>
+            <th>Kategori</th>
+            <th>Marka</th>
+            <th>Ürün Adı</th>
+            <th>Barkod No</th>
+            <th>Alış Fiyatı</th>
+            <th>Satış Fiyatı</th>
+            <th>Miktarı</th>
+            <th>Birim</th>
+            <th>K.D.V</th>
+            <th>Tarih</th>
+            <th>Açıklama</th>
+            <th></th><th></th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@Html.DisplayFor(x => item.ID)</td>
+            <td>@Html.DisplayFor(x => item.Kategoriler.Kategori)</td>
+            <td>@Html.DisplayFor(x => item.Markalar.Marka)</td>
+            <td>@Html.DisplayFor(x => item.UrunAdi)</td>
+            <td>@Html.DisplayFor(x => item.BarkodNo)</td>
+            <td>@Html.DisplayFor(x => item.AlisFiyati)</td>
+            <td>@Html.DisplayFor(x => item.SatisFiyati)</td>
+            <td>@Html.DisplayFor(x=>item.Miktari)</td>
+            <td>@Html.DisplayFor(x => item.Birimler.Birim)</td>
+            <td>%@Html.DisplayFor(x => item.KDV)</td>
+            <td>@Html.DisplayFor(x => item.Tarih)</td>
+            <td>@Html.DisplayFor(x => item.Aciklama)</td>
+            <td>@Html.ActionLink("Sil", "SilBilgiGetir", new { id = item.ID }, new { @class = "btn btn-danger" })</td>
+            <td>@Html.ActionLink("Güncelle", "GuncelleBilgiGetir", new { id = item.ID }, new { @class = "btn btn-primary" })</td>
+        </tr>
+        }
+    </tbody>
+</table>
+<a href="/Urunler/Ekle/" class="btn btn-secondary">Ürün Ekle</a>
+
+

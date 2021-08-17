@@ -33,20 +33,27 @@
         @foreach (var item in Model)
         {
         <tr>
+            <td>@item.ID</td> 
+            <td>@item.Kategoriler.Kategori</td> 
+            <td>@item.Marka</td> 
+            <td>@item.Aciklama</td>
+            @*<td>@Html.DisplayFor(x => item.ID)</td>
+
+
+            <td>@Html.DisplayFor(x => item.Kategoriler.Kategori)</td>
+
+
+            <td>@Html.DisplayFor(x => item.Marka)</td>
+
+
+            <td>@Html.DisplayFor(x => item.Aciklama)</td>*@
+
+
+
+            @*<td><a href="/Markalar/SilBilgiGetir/@item.ID" class="btn btn-danger">Sil</a> </td>   1.sil buton yöntemi*@
+
             <td>
-                @item.ID
-            </td>
-            <td>
-                @item.Kategoriler.Kategori
-            </td>
-            <td>
-                @item.Marka
-            </td>
-            <td>
-                @item.Aciklama
-            </td>
-            <td>
-                <a href="/Markalar/SilBilgiGetir/@item.ID" class="btn btn-danger">Sil</a>
+                @Html.ActionLink("Sil Butonu", "Sil", new { id = item.ID }, new { onclick = "return confirm('Kayıt Silinsin Mi?')" })
             </td>
             <td>
                 <a href="/Markalar/GuncelleBilgiGetir/@item.ID" class="btn btn-primary">Güncelle</a>

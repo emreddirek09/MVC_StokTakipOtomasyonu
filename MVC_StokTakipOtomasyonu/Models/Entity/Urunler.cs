@@ -11,7 +11,9 @@ namespace MVC_StokTakipOtomasyonu.Models.Entity
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
+
     public partial class Urunler
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,19 +21,51 @@ namespace MVC_StokTakipOtomasyonu.Models.Entity
         {
             this.Satislar = new HashSet<Satislar>();
             this.Sepet = new HashSet<Sepet>();
+            this.MarkaListesi = new List<SelectListItem>();
+            MarkaListesi.Insert(0, new SelectListItem { Text = "Önce Kategori Seçilmelidir", Value = "" });
         }
     
         public int ID { get; set; }
+        [Required(ErrorMessage ="Kategori Alaný Boþ Geçilemez..")]
         public int KategoriID { get; set; }
+
+        [Required(ErrorMessage = "Marka Alaný Boþ Geçilemez..")]
         public int MarkaID { get; set; }
+
+        [Required(ErrorMessage = "Urun Adi Alaný Boþ Geçilemez..")]
+        [Display(Name = "Ürün Adý")]
         public string UrunAdi { get; set; }
+
+        [Required(ErrorMessage = "Barkod No Alaný Boþ Geçilemez..")]
+        [Display(Name = "Barkod No")]
         public string BarkodNo { get; set; }
-        public decimal AlisFiyati { get; set; }
-        public decimal SatisFiyati { get; set; }
-        public int KDV { get; set; }
+
+        [Required(ErrorMessage = "Alis Fiyati Alaný Boþ Geçilemez..")]
+        [Display(Name = "Alýþ Fiyatý")]
+        public decimal? AlisFiyati { get; set; }
+
+        [Required(ErrorMessage = "Satis Fiyati Alaný Boþ Geçilemez..")]
+        [Display(Name = "Satýþ Fiyatý")]
+        public decimal? SatisFiyati { get; set; }
+
+        [Required(ErrorMessage = "K.D.V Alaný Boþ Geçilemez..")]
+        [Range(0,100, ErrorMessage ="0-100 arasý rakam girilmelidir.")]
+        [Display(Name = "K.D.V.")]
+        public int? KDV { get; set; }
+
+        [Required(ErrorMessage = "Birim Alaný Boþ Geçilemez..")]
         public int BirimID { get; set; }
+
+        [Required(ErrorMessage = "Tarih Alaný Boþ Geçilemez..")]
         public System.DateTime Tarih { get; set; }
+
+        [Required(ErrorMessage = "Açýklama Alaný Boþ Geçilemez..")]
+        [Display(Name ="Açýklama")]
         public string Aciklama { get; set; }
+
+        [Required(ErrorMessage = "Miktar Alaný Boþ Geçilemez..")]
+        [Display(Name = "Miktarý")]
+        public decimal? Miktari { get; set; }
     
         public virtual Birimler Birimler { get; set; }
         public virtual Kategoriler Kategoriler { get; set; }
@@ -40,5 +74,9 @@ namespace MVC_StokTakipOtomasyonu.Models.Entity
         public virtual ICollection<Satislar> Satislar { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sepet> Sepet { get; set; }
+
+        public List<SelectListItem> KategoriListesi { get; set; }
+        public List<SelectListItem> MarkaListesi { get; set; }
+        public List<SelectListItem> BirimListesi { get; set; }
     }
 }

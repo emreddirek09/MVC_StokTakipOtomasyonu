@@ -97,8 +97,9 @@ warning 6002: The table/view 'MVC_StokTakip.dbo.Sepet' does not have a primary k
     <Property Name="BarkodNo" Type="varchar(max)" Nullable="false" />
     <Property Name="AlisFiyati" Type="decimal" Precision="28" Scale="2" Nullable="false" />
     <Property Name="SatisFiyati" Type="decimal" Precision="28" Scale="2" Nullable="false" />
-    <Property Name="KDV" Type="int" Nullable="false" />
+    <Property Name="Miktari" Type="decimal" Precision="28" Scale="2" Nullable="false" />
     <Property Name="BirimID" Type="int" Nullable="false" />
+    <Property Name="KDV" Type="int" Nullable="false" />
     <Property Name="Tarih" Type="datetime" Nullable="false" />
     <Property Name="Aciklama" Type="varchar(max)" Nullable="false" />
   </EntityType>

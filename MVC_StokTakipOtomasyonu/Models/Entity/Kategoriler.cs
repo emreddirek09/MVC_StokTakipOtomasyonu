@@ -11,8 +11,7 @@ namespace MVC_StokTakipOtomasyonu.Models.Entity
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Kategoriler
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,12 +20,9 @@ namespace MVC_StokTakipOtomasyonu.Models.Entity
             this.Markalar = new HashSet<Markalar>();
             this.Urunler = new HashSet<Urunler>();
         }
-        
-        
+    
         public int ID { get; set; }
-        [Required(ErrorMessage = "Kategori Alaný Boþ Geçilemez.")]
         public string Kategori { get; set; }
-        [Required(ErrorMessage = "Açýklama Alaný Boþ Geçilemez.")]
         public string Aciklama { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

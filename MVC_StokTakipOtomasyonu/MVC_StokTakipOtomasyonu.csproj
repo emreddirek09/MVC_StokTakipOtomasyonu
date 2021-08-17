@@ -132,6 +132,7 @@
     <Compile Include="Controllers\BirimlerController.cs" />
     <Compile Include="Controllers\KategorilerController.cs" />
     <Compile Include="Controllers\MarkalarController.cs" />
+    <Compile Include="Controllers\UrunlerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -222,6 +223,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\MarkaScript.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -244,6 +246,9 @@
     <Content Include="Views\Markalar\Index.cshtml" />
     <Content Include="Views\Markalar\Ekle.cshtml" />
     <Content Include="Views\Markalar\GuncelleBilgiGetir.cshtml" />
+    <Content Include="Views\Markalar\SilBilgiGetir.cshtml" />
+    <Content Include="Views\Urunler\Index.cshtml" />
+    <Content Include="Views\Urunler\Ekle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

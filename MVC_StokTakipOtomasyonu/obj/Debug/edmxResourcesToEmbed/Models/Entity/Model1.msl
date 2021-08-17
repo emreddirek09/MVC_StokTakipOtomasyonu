@@ -63,6 +63,7 @@
     <EntitySetMapping Name="Urunler">
       <EntityTypeMapping TypeName="MVC_StokTakipModel.Urunler">
         <MappingFragment StoreEntitySet="Urunler">
+          <ScalarProperty Name="Miktari" ColumnName="Miktari" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="KategoriID" ColumnName="KategoriID" />
           <ScalarProperty Name="MarkaID" ColumnName="MarkaID" />

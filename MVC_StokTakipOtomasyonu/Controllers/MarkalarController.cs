@@ -82,5 +82,18 @@ namespace MVC_StokTakipOtomasyonu.Controllers
 
         }
 
+        public ActionResult SilBilgiGetir(Markalar p)
+        {
+            var getir = db.Markalar.Find(p.ID);
+            return View(getir);
+        }
+        //Silme komutu yazılacak
+        public ActionResult Sil(Markalar m)
+        {
+            db.Entry(m).State = System.Data.Entity.EntityState.Deleted;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
     }
 }
